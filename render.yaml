@@ -1,0 +1,39 @@
+# render.yaml — Render.com deployment configuration for Coder Buddy
+# Docs: https://render.com/docs/yaml-spec
+
+services:
+  - type: web
+    name: coder-buddy-api
+    runtime: python
+    region: oregon
+    plan: free
+
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+
+    healthCheckPath: /health
+
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false          # Set manually in the Render dashboard → Environment tab
+
+      - key: MAX_RETRIES
+        value: "3"
+
+      - key: LOG_LEVEL
+        value: "INFO"
+
+      - key: TEST_TIMEOUT
+        value: "60"
+
+      - key: RATE_LIMIT
+        value: "10/minute"
+
+      - key: ALLOWED_REPO_PATHS
+        value: ""            # Empty = allow all paths (suitable for demo; restrict in prod)
+
+      - key: PYTHON_VERSION
+        value: "3.11.0"
