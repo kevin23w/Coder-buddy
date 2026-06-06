@@ -51,6 +51,23 @@ class Settings(BaseSettings):
         description="Discord Webhook URL. Leave empty to disable.",
     )
 
+    # ── Supabase ──────────────────────────────────────────────────────────
+    SUPABASE_URL: str = Field(default="", description="Supabase project URL.")
+    SUPABASE_ANON_KEY: str = Field(default="", description="Supabase anon/public key.")
+    SUPABASE_SERVICE_ROLE_KEY: str = Field(default="", description="Supabase service role key (server-side only).")
+
+    # ── Razorpay ──────────────────────────────────────────────────────────
+    RAZORPAY_KEY_ID: str = Field(default="", description="Razorpay Key ID.")
+    RAZORPAY_KEY_SECRET: str = Field(default="", description="Razorpay Key Secret.")
+    RAZORPAY_WEBHOOK_SECRET: str = Field(default="", description="Razorpay webhook secret for signature verification.")
+
+    # ── Resend email ──────────────────────────────────────────────────────
+    RESEND_API_KEY: str = Field(default="", description="Resend.com API key.")
+    RESEND_FROM_EMAIL: str = Field(default="noreply@coderbuddy.dev", description="From address for transactional emails.")
+
+    # ── App URLs ──────────────────────────────────────────────────────────
+    NEXT_PUBLIC_APP_URL: str = Field(default="http://localhost:3000", description="Frontend app URL for email links.")
+
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8", "extra": "ignore"}
 
     # ── Computed helpers ──────────────────────────────────────────────────
