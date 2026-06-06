@@ -41,3 +41,12 @@ Thumbs.db
 
 # LangGraph / LangChain cache
 .langchain.db
+
+# Node.js / Next.js
+node_modules/
+landing/node_modules/
+landing/.next/
+landing/out/
+landing/.vercel/
+landing/package-lock.json
+.npm/
